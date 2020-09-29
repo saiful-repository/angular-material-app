@@ -16,6 +16,7 @@ export class RegistratiionComponent implements OnInit{
   registration: Registration
   msg: any
   ShowHide: boolean = false;
+  imageFile: File;
 
   constructor(private stdService: StudentService) { }
 
@@ -37,7 +38,7 @@ export class RegistratiionComponent implements OnInit{
       this.registration.email = this.registrationForm.get('email').value;
       this.registration.phone = this.registrationForm.get('phone').value.toString();
       this.registration.password = this.registrationForm.get('password').value;
-
+      this.registration.photo = this.imageFile;
       console.log(JSON.stringify(this.registration));
 
       
@@ -64,6 +65,10 @@ export class RegistratiionComponent implements OnInit{
     }
   }
 
+  onFileChanged(event) {
+    this.imageFile = event.target.files[0];
+    
+  }
 }
 
 //export class MyErrorStateMatcher implements ErrorStateMatcher {

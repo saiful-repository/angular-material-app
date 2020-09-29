@@ -4,5 +4,6 @@ export class Registration {
   lastName: String;
   email: String;
   phone: String;
-  password: String;  
+  password: String;
+  photo: File;
 }

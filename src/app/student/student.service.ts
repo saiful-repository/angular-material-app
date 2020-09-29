@@ -9,7 +9,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class StudentService {
 
-  registrationForm:FormGroup
+  registrationForm: FormGroup
+  //formData: FormData = new FormData();
 
   constructor(private fb: FormBuilder, private http: HttpClient) { }
 
@@ -22,7 +23,7 @@ export class StudentService {
         email: ['', [Validators.required, Validators.email]],
         phone: ['', Validators.required],
         password: ['', Validators.required],
-        confirmPasword: ['', Validators.required]         
+        confirmPasword: ['', Validators.required]       
       }, { validator: this.passwordMatchValidator })
 
     return this.registrationForm
@@ -36,14 +37,28 @@ export class StudentService {
   }
 
   addRegistration(reg: Registration) {
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json'
+    console.log(reg.photo);
+    let formData = new FormData();
+    formData.append("firstName", reg.firstName.toString());
+    formData.append("lastName", reg.lastName.toString());
+    formData.append("email", reg.email.toString());
+    formData.append("phone", reg.phone.toString());
+    formData.append("password", reg.password.toString());
+    formData.append("photo", reg.photo);
+    console.log(JSON.stringify(formData));
+    formData.forEach((value, key) => {
+      console.log(key + ">>" + value)
     });
-    return this.http.post('https://localhost:44304/api/student/', JSON.stringify(reg), { headers, responseType: 'json' });
+    //let headers = new HttpHeaders({
+    //  'Content-Type': 'application/x-www-form-urlencoded'
+    //});
+    return this.http.post('https://localhost:44304/api/Student/AddStudent', formData, { responseType: 'json' });
   }
 
   listRegistration() {   
     return this.http.get('https://localhost:44304/api/student/');
   }
+
+  
 
 }
