@@ -6,4 +6,5 @@ export class Registration {
   phone: String;
   password: String;
   photo: File;
+  portfolioImage: Array<File>;
 }

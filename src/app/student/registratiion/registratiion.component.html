@@ -1,6 +1,7 @@
 <mat-card>Registration</mat-card>
 <div class="container">
   <form class="example-form" [formGroup]="registrationForm" (ngSubmit)="SubmitRegistration()">
+
     <div class="row">
       <mat-form-field class="example-full-width">
         <input matInput formControlName="firstName" placeholder="First Name">
@@ -47,14 +48,25 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <div class="row">      
-        <input type="file" (change)="onFileChanged($event)">       
-    </div>
-      <div class="form-group">
-        <button mat-raised-button color="primary">Submit</button>
+    <div class="row">
+      <div class="col-md-6">
+        <label>Photo</label>
+        <input type="file" (change)="onFileChanged($event)">
       </div>
+      <div class="col-md-6">
+        <label>Portfolio Image (Choose Multiple)</label>
+        <input type="file" (change)="onFileChangedMultiple($event)" multiple>
+      </div>
+    </div>
+    <div class="form-group">
+      <button mat-raised-button color="primary">Submit</button>
+    </div>
   </form>
-  <div *ngIf="this.ShowHide">
-    <mat-spinner></mat-spinner>
+  <div class="progress form-group" *ngIf="progress > 0">
+    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="progress">
+    </div>
   </div>
+  <!--<div *ngIf="this.ShowHide">
+    <mat-spinner></mat-spinner>
+  </div>-->
 </div>
