@@ -4,48 +4,42 @@
 
     <div class="row">
       <mat-form-field class="example-full-width">
-        <input matInput formControlName="firstName" placeholder="First Name">
-        <mat-error *ngIf="registrationForm.get('firstName').hasError('required')">
-          First name is required
+        <input matInput formControlName="firstName" placeholder="First Name" (blur)="logValidationErrors()">
+        <mat-error *ngIf="formErrors.firstName">
+          {{formErrors.firstName}}
         </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
-        <input matInput formControlName="lastName" placeholder="Last Name">
-        <mat-error *ngIf="registrationForm.get('firstName').hasError('required')">
-          Last name is required
+        <input matInput formControlName="lastName" placeholder="Last Name" (blur)="logValidationErrors()">
+        <mat-error *ngIf="formErrors.lastName">
+          {{formErrors.lastName}}
         </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <input matInput formControlName="email" placeholder="Email">
-        <mat-error *ngIf="registrationForm.get('email').hasError('required')">
-          Email is required
-        </mat-error>
-        <mat-error *ngIf="registrationForm.get('email').hasError('email')">
-          Email is invalid
-        </mat-error>
+        <mat-error *ngIf="formErrors.email" (blur)="logValidationErrors()">
+          {{formErrors.email}}
+        </mat-error>       
       </mat-form-field>
     </div>
     <div class="row">
       <mat-form-field class="example-full-width">
-        <input matInput formControlName="phone" placeholder="Phone" type="number">
-        <mat-error *ngIf="registrationForm.get('phone').hasError('required')">
-          Phone is required
+        <input matInput formControlName="phone" placeholder="Phone" type="number" (blur)="logValidationErrors()">
+        <mat-error *ngIf="formErrors.phone">
+          {{formErrors.phone}}
         </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
-        <input matInput formControlName="password" placeholder="Password" type="password">
-        <mat-error *ngIf="registrationForm.get('password').hasError('required')">
-          Password is required
+        <input matInput formControlName="password" placeholder="Password" type="password" (blur)="logValidationErrors()">
+        <mat-error *ngIf="formErrors.password">
+          {{formErrors.password}}
         </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
-        <input matInput formControlName="confirmPasword" placeholder="Confirm Pasword" type="password">
-        <mat-error *ngIf="registrationForm.get('confirmPasword').hasError('required')">
-          Confirm Pasword is required
-        </mat-error>
-        <mat-error *ngIf="registrationForm.get('confirmPasword').hasError('noMatch')">
-          Pasword doesn't match
-        </mat-error>
+        <input matInput formControlName="confirmPasword" placeholder="Confirm Pasword" type="password" (blur)="logValidationErrors()">
+        <mat-error *ngIf="formErrors.confirmPasword">
+          {{formErrors.confirmPasword}}
+        </mat-error>        
       </mat-form-field>
     </div>
     <div class="row">

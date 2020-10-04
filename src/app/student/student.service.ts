@@ -20,7 +20,7 @@ export class StudentService {
 
     this.registrationForm = this.fb.group(
       {
-        firstName: ['', Validators.required],
+        firstName: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(20)]],
         lastName: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         phone: ['', Validators.required],
